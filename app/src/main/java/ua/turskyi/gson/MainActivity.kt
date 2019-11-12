@@ -25,18 +25,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     private fun saveProfile() {
         val profile = Profile("${editTextName.text}","${editTextAge.text}")
-        saveUsersToPreferences(profile)
+        saveProfileToPreferences(profile)
+    }
+
+    private fun saveProfileToPreferences(user: Profile) {
+        val prefEditor = PreferenceManager
+            .getDefaultSharedPreferences(this).edit()
+        val jsonString = Gson().toJson(user)
+        prefEditor.putString("user", jsonString).apply()
     }
 
     private fun sendToSecondActivity() {
         val intent = Intent(this, SecondActivity::class.java)
         this.startActivity(intent)
-    }
-
-    private fun saveUsersToPreferences(user: Profile) {
-        val prefEditor = PreferenceManager
-            .getDefaultSharedPreferences(this).edit()
-        val jsonString = Gson().toJson(user)
-        prefEditor.putString("user", jsonString).apply()
     }
 }

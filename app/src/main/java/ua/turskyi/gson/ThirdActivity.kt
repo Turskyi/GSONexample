@@ -11,7 +11,7 @@ class ThirdActivity : AppCompatActivity(R.layout.activity_third){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val user = getUser()
+        val user = getProfile()
         name.text = user?.name
 
         age.text = user?.age
@@ -20,7 +20,7 @@ class ThirdActivity : AppCompatActivity(R.layout.activity_third){
 
     }
 
-    private fun getUser(): Profile? {
+    private fun getProfile(): Profile? {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         val jsonString = preferences.getString("user", null)
 
