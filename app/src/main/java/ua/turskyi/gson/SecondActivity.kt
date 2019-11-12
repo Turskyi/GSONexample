@@ -20,8 +20,10 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second){
     }
 
     private fun saveProfile() {
-        val userToSave = Profile(null, null, "${editTextLanguage.text}")
-        saveUsersToPreferences(userToSave)
+        val user = getUser()
+        val profile = Profile(user?.name, user?.age, null)
+        profile.language = "${editTextLanguage.text}"
+        saveUsersToPreferences(profile)
     }
 
     private fun sendToThirdActivity() {
@@ -34,5 +36,16 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second){
             .getDefaultSharedPreferences(this).edit()
         val jsonString = Gson().toJson(user)
         prefEditor.putString("user", jsonString).apply()
+    }
+
+    private fun getUser(): Profile? {
+        val preferences =
+            PreferenceManager.getDefaultSharedPreferences(this)
+        val jsonString = preferences.getString("user", null)
+
+        return if (jsonString != null)
+            Gson().fromJson(jsonString)
+        else
+            null
     }
 }

@@ -16,11 +16,18 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
             saveProfile()
             sendToSecondActivity()
         }
+
+        btnShowData.setOnClickListener {
+            val intent = Intent(this, ThirdActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun saveProfile() {
-        val userToSave = Profile("${editTextName.text}", "${editTextAge.text}")
-        saveUsersToPreferences(userToSave)
+        val profile = Profile(null,null,null)
+        profile.name = "${editTextName.text}"
+        profile.age = "${editTextAge.text}"
+        saveUsersToPreferences(profile)
     }
 
     private fun sendToSecondActivity() {
