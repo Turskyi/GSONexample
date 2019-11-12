@@ -28,11 +28,11 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
         saveProfileToPreferences(profile)
     }
 
-    private fun saveProfileToPreferences(user: Profile) {
+    private fun saveProfileToPreferences(profile: Profile) {
         val prefEditor = PreferenceManager
             .getDefaultSharedPreferences(this).edit()
-        val jsonString = Gson().toJson(user)
-        prefEditor.putString("user", jsonString).apply()
+        val jsonString = Gson().toJson(profile)
+        prefEditor.putString("profile", jsonString).apply()
     }
 
     private fun sendToSecondActivity() {

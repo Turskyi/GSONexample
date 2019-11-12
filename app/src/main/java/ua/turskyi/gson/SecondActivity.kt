@@ -16,7 +16,6 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second){
             saveProfile()
             sendToThirdActivity()
         }
-
     }
 
     private fun saveProfile() {
@@ -45,6 +44,6 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second){
         return if (jsonString != null)
             Gson().fromJson(jsonString)
         else
-            null
+            Profile(null,null,null)
     }
 }
