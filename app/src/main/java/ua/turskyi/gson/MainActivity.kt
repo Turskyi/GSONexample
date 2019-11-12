@@ -24,9 +24,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main) {
     }
 
     private fun saveProfile() {
-        val profile = Profile(null,null,null)
-        profile.name = "${editTextName.text}"
-        profile.age = "${editTextAge.text}"
+        val profile = Profile("${editTextName.text}","${editTextAge.text}")
         saveUsersToPreferences(profile)
     }
 

@@ -21,8 +21,7 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second){
 
     private fun saveProfile() {
         val user = getUser()
-        val profile = Profile(user?.name, user?.age, null)
-        profile.language = "${editTextLanguage.text}"
+        val profile = Profile(user?.name, user?.age, "${editTextLanguage.text}")
         saveUsersToPreferences(profile)
     }
 
